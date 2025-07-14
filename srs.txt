@@ -1,0 +1,25 @@
+1. Frontend is React
+2. Backend is FastAPI
+3. There'd be 2 user privileges, admin (me/app developer) and normal user (client/corporation owner).
+4. After normal user logs in, 
+	if there are transport jobs, then there'd be a list of jobs with data like:
+		* when was it carried?
+		* which vehicle was used?
+		* who was the driver?
+		* international/domestic? 
+		* from and to which places?
+		* an option to add further jobs.
+ 
+	else display option to add first transport job with data like:
+		* scheduled Date
+		* Vehicle type (mini truck/trailer-truck/train/plane/ship)
+		* assigned driver
+		* transport mode (international/domestic)
+		* source - destination
+	
+	data could be modified and/or deleted by normal user.
+
+so its simple CRUD operation app like every web app on the internet.
+
+features in Wishlist:
+	* add timer in starting of job and finishing the job. because in real time it'd be one of the main 	  features. but considering this is a personal project, timer would suffice to just finish the job 	  after a day automatically.
