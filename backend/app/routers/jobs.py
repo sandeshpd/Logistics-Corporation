@@ -1,8 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
-from ..models import database, schemas
+
 from .. import session
+from ..models import database, schemas
+from ..security import oauth2
 
 router = APIRouter(
     prefix="/jobs",
@@ -11,13 +13,20 @@ router = APIRouter(
 
 # retrieve all jobs
 @router.get("", response_model=List[schemas.JobResponse])
-def get_jobs(db:Session = Depends(session.get_db)):
+def get_jobs(
+    db:Session = Depends(session.get_db), 
+    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
+):
     job = db.query(database.Job).all()
     return job
 
 # retrieve job by id
 @router.get("/{id}", response_model=schemas.JobResponse)
-def get_job_by_id(id:int, db:Session = Depends(session.get_db)):
+def get_job_by_id(
+    id:int, 
+    db:Session = Depends(session.get_db), 
+    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
+):
     job = db.query(database.Job).filter(database.Job.id == id).first()
 
     if not job:
@@ -30,7 +39,11 @@ def get_job_by_id(id:int, db:Session = Depends(session.get_db)):
 
 # create new job
 @router.post("", status_code=status.HTTP_201_CREATED)
-def create_job(request:schemas.JobBase, db: Session = Depends(session.get_db)):
+def create_job(
+    request:schemas.JobBase, 
+    db: Session = Depends(session.get_db), 
+    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
+):
     new_job = database.Job(
         description=request.description,
         source_location=request.source_location,
@@ -45,7 +58,12 @@ def create_job(request:schemas.JobBase, db: Session = Depends(session.get_db)):
 
 # update a job
 @router.put("/{id}", status_code=status.HTTP_202_ACCEPTED)
-def update(id:int, request:schemas.JobBase, db:Session = Depends(session.get_db)):
+def update(
+    id:int, 
+    request:schemas.JobBase, 
+    db:Session = Depends(session.get_db),
+    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
+):
     updated_request = request.model_dump(exclude_unset=True)
     query = db.query(database.Job).filter(database.Job.id == id)
 
@@ -64,7 +82,11 @@ def update(id:int, request:schemas.JobBase, db:Session = Depends(session.get_db)
 
 # delete a job
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def destroy(id:int, db:Session = Depends(session.get_db)):
+def destroy(
+    id:int, 
+    db:Session = Depends(session.get_db),
+    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
+):
     query = db.query(database.Job).filter(database.Job.id == id)
 
     if not query.first():
