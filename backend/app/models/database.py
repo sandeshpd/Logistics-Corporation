@@ -10,6 +10,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
+    password = Column(String)
     full_name = Column(String)
     role = Column(String)   # E.g. driver, manager etc.
     jobs = relationship("Job", back_populates="driver")
