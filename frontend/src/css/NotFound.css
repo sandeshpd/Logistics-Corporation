@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.main_container {
+    max-width: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.main_container p {
+    font-size: 1.5rem;
+}
