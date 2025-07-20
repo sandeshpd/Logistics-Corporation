@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Home from "./pages/Home";
 import Jobs from "./pages/Jobs";
 import NotFound from "./pages/NotFound";
+import Register from "./pages/Register";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/jobs" element={<Jobs />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ChakraProvider>
