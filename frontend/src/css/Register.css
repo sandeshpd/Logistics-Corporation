@@ -1,0 +1,11 @@
+h2 {
+    margin-bottom: 1em;
+}
+
+.submitBtn {
+    transition: 250ms;
+}
+
+.submitBtn:hover {
+    opacity: 0.9;
+}
