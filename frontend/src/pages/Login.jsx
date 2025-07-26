@@ -29,7 +29,7 @@ function Login() {
         <>
             <Container maxW="100%" display="grid" placeContent="center">
                 <form>
-                    <Card.Root width="400px" variant="elevated" p="2.7em">
+                    <Card.Root width="400px" variant="elevated" p="2.5em">
                         <Card.Header placeItems="center">
                             <Avatar.Root shape="full" size="2xl">
                                 <Avatar.Fallback name="Profile" />
@@ -70,7 +70,7 @@ function Login() {
                                 >
                                     Sign In
                                 </Button>
-                                <Text justifyContent="end" fontSize="1rem">
+                                <Text justifyContent="end" fontSize="1rem" mb="0">
                                     Don't have an account?{" "}
                                     <Link
                                         variant="underline"
@@ -109,7 +109,7 @@ function Login() {
                                         color="black" 
                                         size="lg"
                                     />
-                                    <Text flexShrink="0">Or</Text>
+                                    <Text flexShrink="0" height="1.4em" mb="0">Or</Text>
                                     <Separator 
                                         flex="1" 
                                         orientation="horizontal"
@@ -118,7 +118,7 @@ function Login() {
                                         size="lg"
                                     />
                                 </HStack>
-                                <Text>Login using:</Text>
+                                <Text mb=".8em">Login using:</Text>
                                 <HStack gap="6">
                                     <Button
                                         color="#000"
