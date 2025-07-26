@@ -24,7 +24,7 @@ function Register() {
         <>
             <Container maxW="100%" display="grid" placeContent="center">
                 <form>
-                    <Card.Root width="100%" variant="elevated" p="2.7rem">
+                    <Card.Root width="100%" variant="outline" p="2.7rem" border="1px solid" borderColor="#aaa">
                         <Card.Header placeItems="center">
                             <Card.Title>
                                 <h2>Register user</h2>
@@ -39,6 +39,8 @@ function Register() {
                                             placeholder="Enter first name"
                                             variant="outline"
                                             pl=".9em"
+                                            border="1px solid" 
+                                            borderColor="#aaa"
                                         />
                                     </Field.Root>
                                 </GridItem>
@@ -49,6 +51,8 @@ function Register() {
                                             placeholder="Enter last name"
                                             variant="outline"
                                             pl=".9em"
+                                            border="1px solid" 
+                                            borderColor="#aaa"
                                         />
                                     </Field.Root>
                                 </GridItem>
@@ -59,6 +63,8 @@ function Register() {
                                             placeholder="Enter username"
                                             variant="outline"
                                             pl=".9em"
+                                            border="1px solid" 
+                                            borderColor="#aaa"
                                         />
                                     </Field.Root>
                                 </GridItem>
@@ -93,6 +99,8 @@ function Register() {
                                             variant="outline"
                                             pl=".9em"
                                             type="password"
+                                            border="1px solid" 
+                                            borderColor="#aaa"
                                         />
                                     </Field.Root>
                                 </GridItem>
@@ -104,8 +112,9 @@ function Register() {
                                                 <Button
                                                     variant="outline"
                                                     size="md"
-                                                    border=".5px solid #ddd"
                                                     backgroundColor="white"
+                                                    border="1px solid" 
+                                                    borderColor="#aaa"
                                                 >
                                                     Select a role...
                                                     <Icon size="md" color="#777">
