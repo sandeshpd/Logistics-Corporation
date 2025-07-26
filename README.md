@@ -1,6 +1,6 @@
 # DalanValan Logistics Corporation
 ## Overview
-The **DalanValan** Logistics project is a full-stack application designed to manage logistics operations, including user management, vehicle tracking, and job assignments. The application features a React frontend, a FastAPI backend, and a SQLite3 database with SQLAlchemy as the ORM.
+The **DalanValan** Logistics project is a full-stack application designed to manage logistics operations, including user management, vehicle tracking, job assignments and job's progress tracking. The application features a React frontend, a FastAPI backend, and a SQLite3 database with SQLAlchemy as the ORM.
 
 ## Tech Stack
 * **Frontend**: React, Chakra UI
@@ -8,7 +8,7 @@ The **DalanValan** Logistics project is a full-stack application designed to man
 * **Database**: SQLite3
 * **ORM**: SQLAlchemy
 * **Languages**: Python, JavaScript
-* **Runtime**: Node.js
+* **Runtime**: Node.js, Python Virtual Environment
 
 ## Features
 ### Completed
