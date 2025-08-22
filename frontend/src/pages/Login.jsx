@@ -74,7 +74,7 @@ function Login() {
                                     Don't have an account?{" "}
                                     <Link
                                         variant="underline"
-                                        href="#"
+                                        href="/register"
                                         colorPalette="blue"
                                     >
                                         Create one.
