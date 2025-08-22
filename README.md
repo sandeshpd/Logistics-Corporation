@@ -7,18 +7,21 @@ The **DalanValan** Logistics project is a full-stack application designed to man
 * **Backend**: FastAPI
 * **Database**: SQLite3
 * **ORM**: SQLAlchemy
-* **Languages**: Python, JavaScript
+* **Languages**: Python, JavaScript (JSX)
 * **Runtime**: Node.js, Python Virtual Environment
 
 ## Features
 ### Completed
 * Backend CRUD Operations
-    * Users: Create, read, update, and delete user records.
-    * Vehicles: Manage vehicle data with full CRUD support.
-    * Jobs: Handle job assignments with basic CRUD functionality.
+    * Users: Create, read user records.
+    * Vehicles: Create, read vehicle records.
+    * Jobs: Create, read Jobs.
 
 ### To Do:
 * **User Authentication**: Implement secure user authentication for the backend.
+* Users: Update and delete user records.
+* Vehicles: Update and delete vehicle records.
+* Jobs: Update and delete Jobs.
 
 ## Requirements
 To run the project, ensure the following are installed:
@@ -28,6 +31,7 @@ To run the project, ensure the following are installed:
 
 ## Setup Instructions
 ### 1. Clone the Repository:
+* Type this command in your new terminal window:
     ```bash
     git clone https://github.com/sandeshpd/Logistics-Corporation.git
     cd logistics
