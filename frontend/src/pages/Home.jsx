@@ -15,8 +15,8 @@ function Home() {
                 gap="4"
                 smToMd={{display:"flex", flexDir:"column", gap:"1rem"}}
             >
-                <h1 style={{ marginBottom: '0', marginTop:'3rem' }}>DalanValan</h1>
-                <h2 style={{ marginBottom: ".5em" }}>Your logistics, simplified - efficiency at every step.</h2>
+                <h1 style={{ marginBottom: '0', marginTop:'0' }}>DalanValan</h1>
+                <h2 style={{ marginBottom: ".2em" }}>Your logistics, simplified - efficiency at every step.</h2>
                 
                 {/* <h2 style={{ marginBottom: ".4em", justifySelf:"left" }}>Main features:</h2> */}
                 <Stack 
