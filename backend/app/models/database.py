@@ -1,7 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Date
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.ext.declarative import declarative_base
-from typing import List
 
 Base = declarative_base()
 
@@ -21,7 +20,7 @@ class Vehicle(Base):
     id = Column(Integer, primary_key=True, index=True)
     license_plate = Column(String, unique=True, index=True)
     model = Column(String)
-    vehicle_type = Column(String)   # e.g. freight train, trailer
+    vehicle_type = Column(String)   # e.g. freight train, truck
     capacity = Column(Float)    # e.g. in tons
     jobs = relationship("Job", back_populates="vehicle")
 
@@ -32,10 +31,9 @@ class Job(Base):
     description = Column(String)
     source_location = Column(String)
     destination_location = Column(String)
-    scheduled_time = Column(DateTime)
+    scheduled_time = Column(Date)   # FIXME: Modify in a way such that only DD/MM/YYYY is valid
     driver_id = Column(Integer, ForeignKey("users.id"))
-    # driver = relationship("User", back_populates="jobs")
     driver: Mapped["User"] = relationship(back_populates="jobs")
-    vehicle_id = Column(Integer, ForeignKey("vehicles.id"), nullable=True)
+    vehicle_id = Column(Integer, ForeignKey("vehicles.id"))
     driver_name = Column(String, nullable=True)    # Denormalized for convenience
-    vehicle = relationship("Vehicle", back_populates="jobs")
+    vehicle:Mapped["Vehicle"] = relationship(back_populates="jobs")
