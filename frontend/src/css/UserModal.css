@@ -1,0 +1,56 @@
+.user-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+
+.user-modal-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    padding-top: 100px;
+    width: 70vw;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    overflow: auto;
+}
+
+.user-modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 0;
+    padding: 0 3rem;
+    border: 1px solid #000;
+    width: 70%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    animation-name: animateModal;
+    animation-duration: .5s;
+}
+
+.user-header {
+    width: auto;
+}
+
+.close-user-modal-icon {
+    cursor: pointer;
+    font-size: 46px;
+    font-weight: bold;
+    float: right;
+    top: 0;
+}
+
+.user-footer button {
+    background-color: #333;
+    color: white;
+    transition: 1s;
+    margin-top: 1rem;
+}
