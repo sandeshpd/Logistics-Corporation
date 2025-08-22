@@ -4,7 +4,6 @@ from typing import List
 
 from .. import session
 from ..models import database, schemas
-from ..security import oauth2
 
 router = APIRouter(
     prefix="/jobs",
@@ -13,20 +12,13 @@ router = APIRouter(
 
 # retrieve all jobs
 @router.get("", response_model=List[schemas.JobResponse])
-def get_jobs(
-    db:Session = Depends(session.get_db), 
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def get_jobs(db:Session = Depends(session.get_db)):
     job = db.query(database.Job).all()
     return job
 
 # retrieve job by id
 @router.get("/{id}", response_model=schemas.JobResponse)
-def get_job_by_id(
-    id:int, 
-    db:Session = Depends(session.get_db), 
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def get_job_by_id(id:int, db:Session = Depends(session.get_db)):
     job = db.query(database.Job).filter(database.Job.id == id).first()
 
     if not job:
@@ -39,17 +31,14 @@ def get_job_by_id(
 
 # create new job
 @router.post("", status_code=status.HTTP_201_CREATED)
-def create_job(
-    request:schemas.JobBase, 
-    db: Session = Depends(session.get_db), 
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def create_job(request:schemas.JobBase, db: Session = Depends(session.get_db)):
     new_job = database.Job(
         description=request.description,
         source_location=request.source_location,
         destination_location=request.destination_location,
         scheduled_time=request.scheduled_time,
-        driver_id=request.driver_id
+        driver_id=request.driver_id,
+        vehicle_id=request.vehicle_id
     )
     db.add(new_job)
     db.commit()
@@ -58,12 +47,7 @@ def create_job(
 
 # update a job
 @router.put("/{id}", status_code=status.HTTP_202_ACCEPTED)
-def update(
-    id:int, 
-    request:schemas.JobBase, 
-    db:Session = Depends(session.get_db),
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def update(id:int, request:schemas.JobBase, db:Session = Depends(session.get_db)):
     updated_request = request.model_dump(exclude_unset=True)
     query = db.query(database.Job).filter(database.Job.id == id)
 
@@ -82,11 +66,7 @@ def update(
 
 # delete a job
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def destroy(
-    id:int, 
-    db:Session = Depends(session.get_db),
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def destroy(id:int, db:Session = Depends(session.get_db)):
     query = db.query(database.Job).filter(database.Job.id == id)
 
     if not query.first():

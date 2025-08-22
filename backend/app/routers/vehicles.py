@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
 
-from ..security import oauth2
 from ..models import database, schemas
 from .. import session
 
@@ -13,20 +12,13 @@ router = APIRouter(
 
 # retrieve all vehicles
 @router.get("", response_model=List[schemas.VehicleResponse])
-def get_vehicles(
-    db:Session = Depends(session.get_db),
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def get_vehicles(db:Session = Depends(session.get_db)):
     vehicle = db.query(database.Vehicle).all()
     return vehicle
 
 # retrieve vehicle by id
 @router.get("/{id}", response_model=schemas.VehicleResponse)
-def get_vehicle_by_id(
-    id:int, 
-    db:Session = Depends(session.get_db),
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def get_vehicle_by_id(id:int, db:Session = Depends(session.get_db)):
     vehicle = db.query(database.Vehicle).filter(database.Vehicle.id == id).first()
 
     if not vehicle:
@@ -39,11 +31,7 @@ def get_vehicle_by_id(
 
 # create new vehicle
 @router.post("", status_code=status.HTTP_201_CREATED)
-def create_vehicle(
-    request:schemas.VehicleBase, 
-    db: Session = Depends(session.get_db),
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def create_vehicle(request:schemas.VehicleBase, db: Session = Depends(session.get_db)):
     new_vehicle = database.Vehicle(
         license_plate=request.license_plate,
         model=request.model,
@@ -57,12 +45,7 @@ def create_vehicle(
 
 # update a vehicle
 @router.put("/{id}", status_code=status.HTTP_202_ACCEPTED)
-def update_vehicle(
-    id:int, 
-    request:schemas.VehicleBase, 
-    db:Session = Depends(session.get_db),
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def update_vehicle(id:int, request:schemas.VehicleBase, db:Session = Depends(session.get_db)):
     updated_request = request.model_dump(exclude_unset=True)
     query = db.query(database.Vehicle).filter(database.Vehicle.id == id)
 
@@ -81,11 +64,7 @@ def update_vehicle(
 
 # delete a vehicle
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def destroy_vehicle(
-    id:int, 
-    db:Session = Depends(session.get_db),
-    current_user:schemas.UserBase = Depends(oauth2.get_current_user)
-):
+def destroy_vehicle(id:int, db:Session = Depends(session.get_db)):
     query = db.query(database.Vehicle).filter(database.Vehicle.id == id)
 
     if not query.first():
