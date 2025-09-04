@@ -1,3 +1,20 @@
 h1 {
     width: 34rem;
 }
+
+.options-container .options-button {
+    background: inherit;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    place-content: center;
+    cursor: pointer; 
+}
+
+.options-button:hover {
+    border-color: #ddd;
+    background-color: #ddd;
+    padding: 4px;
+}
