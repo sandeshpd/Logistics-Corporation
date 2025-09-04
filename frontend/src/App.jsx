@@ -20,6 +20,7 @@ function App() {
       <div className="main-container">
         <ChakraProvider value={defaultSystem}>
           {!hideNavbar && <Navbar />}
+          {/* Router to route to different pages */}
           <Routes>
             <Route path="/" element={<UnderConstruction />} />
             <Route path="/home" element={<Home />} />
