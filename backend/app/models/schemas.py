@@ -37,17 +37,20 @@ class TokenData(BaseModel):
 
 # Response Models
 class UserResponse(BaseModel):
+    id:int
     username:str
     full_name:str
     role:str
     jobs:List[JobBase]
 
 class UserResponseForJob(BaseModel):
+    id:int
     username:str
     full_name:str
     role:str
 
 class VehicleResponse(BaseModel):
+    id:int
     license_plate:str
     model:str
     vehicle_type:str
@@ -55,6 +58,7 @@ class VehicleResponse(BaseModel):
     jobs:List[JobBase]
 
 class VehicleResponseForJob(VehicleBase):
+    id:int
     license_plate:str
     model:str
     vehicle_type:str
