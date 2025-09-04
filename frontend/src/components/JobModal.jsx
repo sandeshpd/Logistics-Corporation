@@ -38,15 +38,15 @@ function JobModal({ onClose }) {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [value, onChange] = useState(new Date());
-    const [calendar, shwoCalendar] = useState(false);
+    const [calendar, showCalendar] = useState(false);
     const calendarRef = useRef(null);
 
     // API Integration
     const handleSubmitJobData = async (e) => {
         e.preventDefault();
+        setError("");
         setLoading(true);
         setSuccess(false);
-        setError("");
 
         // POST Job data to the backend
         try {
@@ -85,7 +85,7 @@ function JobModal({ onClose }) {
         () => {
             function handleClickOutside(event) {
                 if (calendarRef.current && !calendarRef.current.contains(event.target)) {
-                    shwoCalendar(false);
+                    showCalendar(false);
                 }
             }
             if (calendar) {
@@ -168,8 +168,8 @@ function JobModal({ onClose }) {
                                                 pl="1.4rem"
                                                 value={formatDate(value)}
                                                 readOnly
-                                                onClick={() => shwoCalendar(true)}
-                                                // onChange={(e) => setScheduledAt(e.target.value)}
+                                                onClick={() => showCalendar(true)}
+                                            // onChange={(e) => setScheduledAt(e.target.value)}
                                             />
                                         </InputGroup>
                                         {calendar && (
@@ -186,7 +186,7 @@ function JobModal({ onClose }) {
                                                 <Calendar
                                                     onChange={(date) => {
                                                         onChange(date);
-                                                        shwoCalendar(false);
+                                                        showCalendar(false);
                                                     }}
                                                     value={value}
                                                     style={{ margin: "0 auto", backgroundColor: "#fff" }}
@@ -264,12 +264,7 @@ function JobModal({ onClose }) {
                             <button
                                 onClick={handleSubmitJobData}
                                 disabled={loading || success}
-                                style={
-                                    {
-                                        position: "relative",
-                                        minWidth: "90px"
-                                    }
-                                }
+                                style={{ position: "relative", minWidth: "90px" }}
                             >
                                 {loading ? (
                                     <Spinner size={"sm"} />
