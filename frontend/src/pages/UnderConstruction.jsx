@@ -1,8 +1,9 @@
-import { Container, HStack, Image, Link, Stack, VStack } from "@chakra-ui/react";
+import { Container, Image, Link, Stack, VStack } from "@chakra-ui/react";
 import under_construction from "../assets/under-construction.png";
 import "../css/UnderConstruction.css";
 
-
+{/* This web app is under development so we add information to the home page that
+tells visitor that this web app is under construction */}
 function UnderConstruction() {
     return (
         <>
