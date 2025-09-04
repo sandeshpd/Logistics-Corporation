@@ -27,7 +27,7 @@ def get_user_by_id(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"User with id {id} not found in the database."
+            message=f"User with id {id} not found in the database."
         )
     
     return user
@@ -50,12 +50,17 @@ def create_user(request:schemas.UserBase, db:Session = Depends(session.get_db)):
 @router.put("/{id}", status_code=status.HTTP_202_ACCEPTED)
 def update(id:int, request:schemas.UserBase, db:Session = Depends(session.get_db)):
     updated_request = request.model_dump(exclude_unset=True)
+    
+    # Store hashed password after editing the user
+    if "password" in updated_request:
+        updated_request["password"] = hashing.Hash.encrypt_password(updated_request["password"])
+
     query = db.query(database.User).filter(database.User.id == id)
 
     if not query.first():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"User with id {id} not found in the database."
+            message=f"User with id {id} not found in the database."
         )
     
     query.update(updated_request)
@@ -73,7 +78,7 @@ def destroy(id:int, db:Session = Depends(session.get_db)):
     if not query.first():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"User with id {id} not found in the database."
+            message=f"User with id {id} not found in the database."
         )
     
     query.delete()

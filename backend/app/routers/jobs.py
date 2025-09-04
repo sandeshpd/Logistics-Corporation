@@ -11,6 +11,7 @@ router = APIRouter(
 )
 
 # retrieve all jobs
+# TODO: Implement Pagination by using Query Parameters
 @router.get("", response_model=List[schemas.JobResponse])
 def get_jobs(db:Session = Depends(session.get_db)):
     job = db.query(database.Job).all()
@@ -24,7 +25,7 @@ def get_job_by_id(id:int, db:Session = Depends(session.get_db)):
     if not job:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Job with id {id} not found in the database."
+            message=f"Job with id {id} not found in the database."
         )
     
     return job
@@ -54,7 +55,7 @@ def update(id:int, request:schemas.JobBase, db:Session = Depends(session.get_db)
     if not query.first():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Job with id {id} not found in the database."
+            message=f"Job with id {id} not found in the database."
         )
     
     query.update(updated_request)
@@ -72,7 +73,7 @@ def destroy(id:int, db:Session = Depends(session.get_db)):
     if not query.first():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Job with id {id} not found in the database."
+            message=f"Job with id {id} not found in the database."
         )
     
     query.delete()
