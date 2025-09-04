@@ -72,6 +72,8 @@ function VehicleModal({ onClose }) {
                     <form>
                         <div>
                             <VStack className="vehicle-modal-inner-content">
+
+                                {/* License Plate */}
                                 <Field.Root>
                                     <Field.Label>License Plate</Field.Label>
                                     <Input
@@ -84,6 +86,8 @@ function VehicleModal({ onClose }) {
                                         onChange={(e) => setLicensePlate(e.target.value)}
                                     />
                                 </Field.Root>
+
+                                {/* Model */}
                                 <Field.Root>
                                     <Field.Label>Model</Field.Label>
                                     <Input
@@ -96,6 +100,8 @@ function VehicleModal({ onClose }) {
                                         onChange={(e) => setModel(e.target.value)}
                                     />
                                 </Field.Root>
+
+                                {/* Vehicle Type */}
                                 <Field.Root>
                                     <Field.Label>Vehicle Type</Field.Label>
                                     {/* FIXME: Drop down menu, maybe? */}
@@ -109,6 +115,8 @@ function VehicleModal({ onClose }) {
                                         onChange={(e) => setVehicleType(e.target.value)}
                                     />
                                 </Field.Root>
+
+                                {/* Vehicle Capacity in Tonnes */}
                                 <Field.Root>
                                     <Field.Label>Capacity</Field.Label>
                                     <Input

@@ -49,6 +49,7 @@ function UserModal({ onClose }) {
             <div className="user-modal-container">
                 <Container className="user-modal-content">
                     <div className="user-header">
+                        {/* Close icon */}
                         <span
                             className="close-user-modal-icon"
                             onClick={onClose}
@@ -60,6 +61,7 @@ function UserModal({ onClose }) {
                     <form>
                         <div>
                             <VStack className="user-modal-inner-content">
+                                {/* Username field */}
                                 <Field.Root>
                                     <Field.Label>Username</Field.Label>
                                     <Input
@@ -72,6 +74,8 @@ function UserModal({ onClose }) {
                                         onChange={(e) => setUsername(e.target.value)}
                                     />
                                 </Field.Root>
+
+                                {/* Password field */}
                                 <Field.Root>
                                     <Field.Label>Password</Field.Label>
                                     <Input
@@ -85,6 +89,8 @@ function UserModal({ onClose }) {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </Field.Root>
+
+                                {/* User's Full Name field */}
                                 <Field.Root>
                                     <Field.Label>Full Name</Field.Label>
                                     <Input
@@ -97,6 +103,8 @@ function UserModal({ onClose }) {
                                         onChange={(e) => setFullName(e.target.value)}
                                     />
                                 </Field.Root>
+
+                                {/* User's Role field */}
                                 <Field.Root>
                                     <Field.Label>Role</Field.Label>
                                     {/* FIXME: Give Drop down menu instead of Text Input */}
@@ -110,11 +118,15 @@ function UserModal({ onClose }) {
                                         onChange={(e) => setRole(e.target.value)}
                                     />
                                 </Field.Root>
+
+                                {/* Errors shall appear here if any */}
                                 {error && (
                                     <div className="form-error" style={{ color: "red", marginBottom: "0" }}>
                                         {error}
                                     </div>
                                 )}
+
+                                {/* Submit data button */}
                                 <div className="user-footer">
                                     <button
                                         onClick={handleSubmitUserData}
@@ -139,7 +151,7 @@ function UserModal({ onClose }) {
                         </div>
                     </form >
                 </Container >
-            </div >
+            </div>
         </>
     );
 };

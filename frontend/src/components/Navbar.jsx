@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Container, Icon, Link, Menu, Portal, useStatStyles } from "@chakra-ui/react";
+import { Button, Icon, Link, Menu, Portal} from "@chakra-ui/react";
 import { FaCaretDown } from "react-icons/fa6";
 import JobModal from "./JobModal.jsx";
 import UserModal from "./UserModal.jsx";
